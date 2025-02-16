@@ -1,7 +1,7 @@
 import streamlit as st
 import openai
 
-# Retrieve your OpenAI API key from Streamlit secrets
+# Retrieve your OpenAI API key from Streamlit Cloud Secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Set the page configuration
@@ -27,7 +27,7 @@ that stands out in today's competitive market.
 st.image(
     "https://via.placeholder.com/800x400.png?text=Our+Innovative+Product", 
     caption="Our Revolutionary Product", 
-    use_container_width=True  # Updated parameter
+    use_container_width=True  # Updated parameter to replace deprecated use_column_width
 )
 
 # Features Section
@@ -61,9 +61,9 @@ ai_prompt = st.text_input("Enter your prompt for AI:", placeholder="E.g., Sugges
 if ai_prompt:
     st.write("Generating response...")
     try:
-        # Updated to use ChatCompletion
+        # Use ChatCompletion endpoint from OpenAI
         response = openai.ChatCompletion.create(
-            model="gpt-4-turbo",
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": ai_prompt},
@@ -115,4 +115,5 @@ st.markdown(contact_form, unsafe_allow_html=True)
 
 # Footer
 st.write("Thank you for visiting our website! Stay tuned for more updates.")
+
 
