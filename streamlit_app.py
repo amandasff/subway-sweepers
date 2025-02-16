@@ -20,7 +20,7 @@ this robot autonomously cleans city streets, subway platforms, and public spaces
 """)
 
 # Display an image (replace the URL with your actual project image)
-st.image("https://via.placeholder.com/800x400.png?text=Subway+Sweepers", 
+st.image("https://imgur.com/a/1P85Z9Z", 
          caption="Subway Sweepers in Action", 
          use_container_width=True)
 
