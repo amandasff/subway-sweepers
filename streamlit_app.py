@@ -1,9 +1,7 @@
 import streamlit as st
 import openai
 
-# Configure your OpenAI API key from Streamlit secrets
-openai.api_key = st.secrets["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"]
-
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 # Set the page configuration
 st.set_page_config(
     page_title="Ahoy! - Revolutionary Product",
