@@ -44,7 +44,7 @@ Subway Sweepers integrates hardware and software to provide a complete cleaning 
 
 # Demo Video Section
 st.markdown("## Watch the Demo")
-st.video("https://www.youtube.com/watch?v=dQw4w9WgXcQ")  # Replace with your actual demo video link
+st.video("https://vimeo.com/1057266143?share=copy")  # Your Vimeo link
 
 # Sidebar for Navigation and Contact Information
 st.sidebar.title("Navigation")
@@ -83,6 +83,7 @@ st.markdown(contact_form, unsafe_allow_html=True)
 
 # Footer
 st.write("Thank you for visiting Subway Sweepers! Stay tuned for more updates.")
+
 
 
 
