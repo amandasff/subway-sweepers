@@ -1,4 +1,8 @@
 import streamlit as st
+import openai
+
+# Configure your OpenAI API key from Streamlit secrets
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Set the page configuration
 st.set_page_config(
@@ -45,6 +49,28 @@ adapts to your needs.
 st.markdown("## Watch the Demo")
 st.video("https://www.youtube.com/watch?v=dQw4w9WgXcQ")  # Replace with your video link
 
+# Generative AI Integration Section
+st.markdown("## AI-Powered Ideas")
+st.write("Need some creative inspiration for your product? Use our AI assistant to generate innovative ideas or taglines!")
+
+# Get user prompt for generative AI
+ai_prompt = st.text_input("Enter your prompt for AI:", placeholder="E.g., Suggest a creative tagline for our product...")
+
+if ai_prompt:
+    st.write("Generating response...")
+    try:
+        response = openai.Completion.create(
+            model="text-davinci-003",  # Choose your model as needed
+            prompt=ai_prompt,
+            max_tokens=150,           # Adjust token limit as desired
+            temperature=0.7           # Creativity level
+        )
+        generated_text = response.choices[0].text.strip()
+        st.subheader("AI Generated Response:")
+        st.write(generated_text)
+    except Exception as e:
+        st.error(f"Error generating response: {e}")
+
 # Sidebar for Navigation and Contact Information
 st.sidebar.title("Navigation")
 st.sidebar.markdown("""
@@ -83,3 +109,4 @@ st.markdown(contact_form, unsafe_allow_html=True)
 
 # Footer
 st.write("Thank you for visiting our website! Stay tuned for more updates.")
+
