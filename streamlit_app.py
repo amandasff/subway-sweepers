@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 
 # Retrieve your OpenAI API key from Streamlit Cloud Secrets
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = st.secrets["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"]
 
 # Set the page configuration
 st.set_page_config(
