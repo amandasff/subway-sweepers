@@ -1,7 +1,9 @@
 import streamlit as st
 import openai
 
+# Retrieve your OpenAI API key from Streamlit secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 # Set the page configuration
 st.set_page_config(
     page_title="Ahoy! - Revolutionary Product",
@@ -22,9 +24,11 @@ that stands out in today's competitive market.
 """)
 
 # Display an image (replace the URL with your product image)
-st.image("https://via.placeholder.com/800x400.png?text=Our+Innovative+Product", 
-         caption="Our Revolutionary Product", 
-         use_column_width=True)
+st.image(
+    "https://via.placeholder.com/800x400.png?text=Our+Innovative+Product", 
+    caption="Our Revolutionary Product", 
+    use_container_width=True  # Updated parameter
+)
 
 # Features Section
 st.markdown("## Features")
@@ -57,13 +61,17 @@ ai_prompt = st.text_input("Enter your prompt for AI:", placeholder="E.g., Sugges
 if ai_prompt:
     st.write("Generating response...")
     try:
-        response = openai.Completion.create(
-            model="text-davinci-003",  # Choose your model as needed
-            prompt=ai_prompt,
-            max_tokens=150,           # Adjust token limit as desired
-            temperature=0.7           # Creativity level
+        # Updated to use ChatCompletion
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": ai_prompt},
+            ],
+            max_tokens=150,
+            temperature=0.7
         )
-        generated_text = response.choices[0].text.strip()
+        generated_text = response.choices[0].message["content"].strip()
         st.subheader("AI Generated Response:")
         st.write(generated_text)
     except Exception as e:
