@@ -1,119 +1,129 @@
 import streamlit as st
-import openai
-
-# Retrieve your OpenAI API key from Streamlit Cloud Secrets
-openai.api_key = st.secrets["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"]
 
 # Set the page configuration
 st.set_page_config(
-    page_title="Ahoy! - Revolutionary Product",
+    page_title="Subway Sweepers - Smart Urban Cleaners",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Main Title and Header
-st.title("Ahoy!")
-st.header("Welcome to the Future of Innovation")
-st.subheader("Introducing Our Revolutionary Product")
+# Sidebar Navigation
+pages = {
+    "Home": "home",
+    "Inspiration": "inspiration",
+    "What It Does": "what_it_does",
+    "How We Built It": "how_we_built_it",
+    "Challenges": "challenges",
+    "Accomplishments": "accomplishments",
+    "What We Learned": "what_we_learned",
+    "What's Next": "whats_next"
+}
 
-# Product Description
-st.write("""
-Our product is designed to transform the way you experience technology.
-From cutting-edge features to user-friendly design, we provide a unique experience 
-that stands out in today's competitive market.
-""")
+selection = st.sidebar.radio("Navigation", list(pages.keys()))
 
-# Display an image (replace the URL with your product image)
-st.image(
-    "https://via.placeholder.com/800x400.png?text=Our+Innovative+Product", 
-    caption="Our Revolutionary Product", 
-    use_container_width=True  # Updated parameter to replace deprecated use_column_width
-)
+# Define each page as a function
+def home_page():
+    st.markdown("# Subway Sweepers")
+    st.markdown("### Powering Urban Cleanliness with Smart, Solar-Powered Robotics")
+    st.image("https://via.placeholder.com/800x400.png?text=Subway+Sweepers", 
+             caption="Subway Sweepers in Action", 
+             use_container_width=True)
+    st.write("Welcome to Subway Sweepers, a project dedicated to transforming urban waste management with cutting-edge robotics and sustainable energy.")
 
-# Features Section
-st.markdown("## Features")
-st.markdown("""
-- **Innovative Design:** Sleek and modern, integrating seamlessly into your lifestyle.
-- **High Performance:** Powered by the latest technology for an unmatched experience.
-- **User-Centric Interface:** Intuitive and easy-to-use, perfect for everyone.
-- **Eco-Friendly:** Engineered with sustainability in mind.
-""")
+def inspiration_page():
+    st.markdown("## Inspiration")
+    st.write("""
+    Subway Sweepers was born from a clear need: improving how urban environments handle waste. 
+    Inefficient cleaning methods in public spaces lead to persistent litter problems. 
+    Our solution is a self-contained robot that detects, collects, and properly disposes of trash.
+    By using a Raspberry Pi with YOLO-based object detection and an Arduino for precise control, 
+    Subway Sweepers offers a practical and sustainable approach to keeping public areas cleaner.
+    """)
 
-# How It Works Section
-st.markdown("## How It Works")
-st.write("""
-Our product utilizes state-of-the-art algorithms and robust architecture to deliver 
-a smooth, efficient experience. Whether at home, work, or on the go, our technology 
-adapts to your needs.
-""")
+def what_it_does_page():
+    st.markdown("## What It Does")
+    st.write("""
+    Subway Sweepers is a solar-powered robot designed for urban waste management. It uses a 
+    Raspberry Pi running a YOLO-based object detection system to identify trash in real time. 
+    Upon detection, the robot uses a scooping mechanism and distance sensors to collect trash 
+    and deposit it in the proper disposal location. This system is optimized for environments 
+    such as city roads, subways, and other public spaces.
+    """)
 
-# Demo Video Section
-st.markdown("## Watch the Demo")
-st.video("https://www.youtube.com/watch?v=dQw4w9WgXcQ")  # Replace with your video link
+def how_we_built_it_page():
+    st.markdown("## How We Built It")
+    st.write("""
+    Our project combines both hardware and software innovations:
+    - **Computer Vision:** A Raspberry Pi is paired with a webcam and LCD monitor. Using YOLO and OpenCV, the system identifies a wide range of objects.
+    - **Control System:** An Arduino processes sensor data and converts it into navigation commands, allowing the robot to move autonomously.
+    - **Sustainable Power:** Solar panels power the system through a USB-A to USB-C connection.
+    - **Mechanical Design:** Rotary motors and a repurposed can plow work together to enable effective trash collection.
+    """)
+    st.image("https://via.placeholder.com/800x400.png?text=Hardware+Components", 
+             caption="Hardware Components Overview", 
+             use_container_width=True)
 
-# Generative AI Integration Section
-st.markdown("## AI-Powered Ideas")
-st.write("Need some creative inspiration for your product? Use our AI assistant to generate innovative ideas or taglines!")
+def challenges_page():
+    st.markdown("## Challenges")
+    st.write("""
+    Throughout the development of Subway Sweepers, we encountered several challenges:
+    - Establishing a reliable connection between the Raspberry Pi and the LCD display.
+    - Overcoming mechanical difficulties in assembling the rotary motor and plow mechanism.
+    - Integrating various hardware components to function seamlessly together.
+    These challenges drove us to innovate and refine our approach, ultimately resulting in a more robust system.
+    """)
 
-# Get user prompt for generative AI
-ai_prompt = st.text_input("Enter your prompt for AI:", placeholder="E.g., Suggest a creative tagline for our product...")
+def accomplishments_page():
+    st.markdown("## Accomplishments")
+    st.write("""
+    Our key accomplishments include:
+    - Successfully integrating a YOLO-based object detection system on a Raspberry Pi for real-time trash detection.
+    - Developing an Arduino-driven control system that processes sensor data for precise navigation.
+    - Building a robust, solar-powered robot capable of autonomous cleaning in urban settings.
+    - Creating an engaging and informative web interface with Streamlit to showcase our project.
+    """)
 
-if ai_prompt:
-    st.write("Generating response...")
-    try:
-        # Use ChatCompletion endpoint from OpenAI
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": ai_prompt},
-            ],
-            max_tokens=150,
-            temperature=0.7
-        )
-        generated_text = response.choices[0].message["content"].strip()
-        st.subheader("AI Generated Response:")
-        st.write(generated_text)
-    except Exception as e:
-        st.error(f"Error generating response: {e}")
+def what_we_learned_page():
+    st.markdown("## What We Learned")
+    st.write("""
+    This project provided us with valuable technical insights:
+    - Practical experience deploying machine learning models on resource-constrained hardware.
+    - Techniques for integrating YOLO object detection with Raspberry Pi and interfacing sensor data via Arduino.
+    - Strategies for optimizing energy management using renewable power sources.
+    - The importance of modular design and iterative improvements when developing complex systems.
+    """)
 
-# Sidebar for Navigation and Contact Information
-st.sidebar.title("Navigation")
-st.sidebar.markdown("""
-- [Home](#)
-- [Features](#features)
-- [Demo](#watch-the-demo)
-- [Contact](#get-in-touch)
-""")
+def whats_next_page():
+    st.markdown("## What's Next")
+    st.write("""
+    Moving forward, we plan to:
+    - Incorporate advanced sensors to gather quantitative data on waste levels, graffiti, and infrastructure conditions.
+    - Upgrade the hardware with higher-torque motors and refined mechanical components for increased durability.
+    - Develop a fleet management system for scalable deployment and real-time monitoring.
+    - Expand our web interface to include an interactive dashboard for tracking environmental data.
+    """)
 
-st.sidebar.markdown("## Contact Us")
-st.sidebar.write("""
-Have any questions or want to learn more? Reach out to us at:
-- **Email:** info@ourproduct.com
-- **Phone:** (123) 456-7890
-""")
+# Render selected page
+if pages[selection] == "home":
+    home_page()
+elif pages[selection] == "inspiration":
+    inspiration_page()
+elif pages[selection] == "what_it_does":
+    what_it_does_page()
+elif pages[selection] == "how_we_built_it":
+    how_we_built_it_page()
+elif pages[selection] == "challenges":
+    challenges_page()
+elif pages[selection] == "accomplishments":
+    accomplishments_page()
+elif pages[selection] == "what_we_learned":
+    what_we_learned_page()
+elif pages[selection] == "whats_next":
+    whats_next_page()
 
-# Testimonials Section
-st.markdown("## Testimonials")
-st.write("""
-> "This product has completely transformed the way I work and live. Truly revolutionary!"  
-> *— A Satisfied Customer*
-""")
+# Footer for all pages
+st.write("---")
+st.write("© 2025 Subway Sweepers. All rights reserved.")
 
-# Contact Form
-st.markdown("## Get In Touch")
-contact_form = """
-<form action="https://formsubmit.co/your-email@example.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-    <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-    <textarea name="message" placeholder="Your Message" required style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea>
-    <button type="submit" style="padding: 10px 20px;">Send Message</button>
-</form>
-"""
-st.markdown(contact_form, unsafe_allow_html=True)
-
-# Footer
-st.write("Thank you for visiting our website! Stay tuned for more updates.")
 
 
