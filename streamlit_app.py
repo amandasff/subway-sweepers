@@ -7,123 +7,83 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Sidebar Navigation
-pages = {
-    "Home": "home",
-    "Inspiration": "inspiration",
-    "What It Does": "what_it_does",
-    "How We Built It": "how_we_built_it",
-    "Challenges": "challenges",
-    "Accomplishments": "accomplishments",
-    "What We Learned": "what_we_learned",
-    "What's Next": "whats_next"
-}
+# Main Title and Header
+st.title("Subway Sweepers")
+st.header("Smart Urban Cleaners Powered by Solar Energy")
+st.subheader("Redefining Urban Waste Management")
 
-selection = st.sidebar.radio("Navigation", list(pages.keys()))
+# Product Description
+st.write("""
+Subway Sweepers is a solar-powered robot designed to efficiently detect, collect, and dispose of urban waste. 
+Using a Raspberry Pi running a YOLO-based object detection system and an Arduino-driven control mechanism, 
+this robot autonomously cleans city streets, subway platforms, and public spaces with minimal environmental impact.
+""")
 
-# Define each page as a function
-def home_page():
-    st.markdown("# Subway Sweepers")
-    st.markdown("### Powering Urban Cleanliness with Smart, Solar-Powered Robotics")
-    st.image("https://via.placeholder.com/800x400.png?text=Subway+Sweepers", 
-             caption="Subway Sweepers in Action", 
-             use_container_width=True)
-    st.write("Welcome to Subway Sweepers, a project dedicated to transforming urban waste management with cutting-edge robotics and sustainable energy.")
+# Display an image (replace the URL with your actual project image)
+st.image("https://via.placeholder.com/800x400.png?text=Subway+Sweepers", 
+         caption="Subway Sweepers in Action", 
+         use_container_width=True)
 
-def inspiration_page():
-    st.markdown("## Inspiration")
-    st.write("""
-    Subway Sweepers was born from a clear need: improving how urban environments handle waste. 
-    Inefficient cleaning methods in public spaces lead to persistent litter problems. 
-    Our solution is a self-contained robot that detects, collects, and properly disposes of trash.
-    By using a Raspberry Pi with YOLO-based object detection and an Arduino for precise control, 
-    Subway Sweepers offers a practical and sustainable approach to keeping public areas cleaner.
-    """)
+# Features Section
+st.markdown("## Features")
+st.markdown("""
+- **Solar-Powered Operation:** Runs entirely on renewable energy for sustainable urban cleaning.
+- **Real-Time Object Detection:** Utilizes a Raspberry Pi with YOLO-based computer vision to identify trash.
+- **Autonomous Navigation:** An Arduino processes sensor inputs to navigate and collect waste efficiently.
+- **Versatile Deployment:** Ideal for city roads, subway stations, and various public environments.
+""")
 
-def what_it_does_page():
-    st.markdown("## What It Does")
-    st.write("""
-    Subway Sweepers is a solar-powered robot designed for urban waste management. It uses a 
-    Raspberry Pi running a YOLO-based object detection system to identify trash in real time. 
-    Upon detection, the robot uses a scooping mechanism and distance sensors to collect trash 
-    and deposit it in the proper disposal location. This system is optimized for environments 
-    such as city roads, subways, and other public spaces.
-    """)
+# How It Works Section
+st.markdown("## How It Works")
+st.write("""
+Subway Sweepers integrates hardware and software to provide a complete cleaning solution:
+- A Raspberry Pi, paired with a webcam and LCD monitor, processes live video using YOLO for trash detection.
+- An Arduino converts sensor data into precise navigation commands, guiding the robot to collect trash.
+- Solar panels supply sustainable power, while a mechanical scooping mechanism collects and deposits waste at designated locations.
+""")
 
-def how_we_built_it_page():
-    st.markdown("## How We Built It")
-    st.write("""
-    Our project combines both hardware and software innovations:
-    - **Computer Vision:** A Raspberry Pi is paired with a webcam and LCD monitor. Using YOLO and OpenCV, the system identifies a wide range of objects.
-    - **Control System:** An Arduino processes sensor data and converts it into navigation commands, allowing the robot to move autonomously.
-    - **Sustainable Power:** Solar panels power the system through a USB-A to USB-C connection.
-    - **Mechanical Design:** Rotary motors and a repurposed can plow work together to enable effective trash collection.
-    """)
-    st.image("https://via.placeholder.com/800x400.png?text=Hardware+Components", 
-             caption="Hardware Components Overview", 
-             use_container_width=True)
+# Demo Video Section
+st.markdown("## Watch the Demo")
+st.video("https://www.youtube.com/watch?v=dQw4w9WgXcQ")  # Replace with your actual demo video link
 
-def challenges_page():
-    st.markdown("## Challenges")
-    st.write("""
-    Throughout the development of Subway Sweepers, we encountered several challenges:
-    - Establishing a reliable connection between the Raspberry Pi and the LCD display.
-    - Overcoming mechanical difficulties in assembling the rotary motor and plow mechanism.
-    - Integrating various hardware components to function seamlessly together.
-    These challenges drove us to innovate and refine our approach, ultimately resulting in a more robust system.
-    """)
+# Sidebar for Navigation and Contact Information
+st.sidebar.title("Navigation")
+st.sidebar.markdown("""
+- [Home](#)
+- [Features](#features)
+- [Demo](#watch-the-demo)
+- [Contact](#get-in-touch)
+""")
+st.sidebar.markdown("## Contact Us")
+st.sidebar.write("""
+For more information or collaboration opportunities, please contact us:
+- **Email:** info@subwaysweepers.com
+- **Phone:** (123) 456-7890
+""")
 
-def accomplishments_page():
-    st.markdown("## Accomplishments")
-    st.write("""
-    Our key accomplishments include:
-    - Successfully integrating a YOLO-based object detection system on a Raspberry Pi for real-time trash detection.
-    - Developing an Arduino-driven control system that processes sensor data for precise navigation.
-    - Building a robust, solar-powered robot capable of autonomous cleaning in urban settings.
-    - Creating an engaging and informative web interface with Streamlit to showcase our project.
-    """)
+# Testimonials Section
+st.markdown("## Testimonials")
+st.write("""
+> "Subway Sweepers is a breakthrough in urban waste management. Its autonomous operation and sustainable design offer a practical solution to keeping our cities clean."  
+> *— Urban Planning Expert*
+""")
 
-def what_we_learned_page():
-    st.markdown("## What We Learned")
-    st.write("""
-    This project provided us with valuable technical insights:
-    - Practical experience deploying machine learning models on resource-constrained hardware.
-    - Techniques for integrating YOLO object detection with Raspberry Pi and interfacing sensor data via Arduino.
-    - Strategies for optimizing energy management using renewable power sources.
-    - The importance of modular design and iterative improvements when developing complex systems.
-    """)
+# Contact Form
+st.markdown("## Get In Touch")
+contact_form = """
+<form action="https://formsubmit.co/your-email@example.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
+    <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
+    <textarea name="message" placeholder="Your Message" required style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea>
+    <button type="submit" style="padding: 10px 20px;">Send Message</button>
+</form>
+"""
+st.markdown(contact_form, unsafe_allow_html=True)
 
-def whats_next_page():
-    st.markdown("## What's Next")
-    st.write("""
-    Moving forward, we plan to:
-    - Incorporate advanced sensors to gather quantitative data on waste levels, graffiti, and infrastructure conditions.
-    - Upgrade the hardware with higher-torque motors and refined mechanical components for increased durability.
-    - Develop a fleet management system for scalable deployment and real-time monitoring.
-    - Expand our web interface to include an interactive dashboard for tracking environmental data.
-    """)
+# Footer
+st.write("Thank you for visiting Subway Sweepers! Stay tuned for more updates.")
 
-# Render selected page
-if pages[selection] == "home":
-    home_page()
-elif pages[selection] == "inspiration":
-    inspiration_page()
-elif pages[selection] == "what_it_does":
-    what_it_does_page()
-elif pages[selection] == "how_we_built_it":
-    how_we_built_it_page()
-elif pages[selection] == "challenges":
-    challenges_page()
-elif pages[selection] == "accomplishments":
-    accomplishments_page()
-elif pages[selection] == "what_we_learned":
-    what_we_learned_page()
-elif pages[selection] == "whats_next":
-    whats_next_page()
-
-# Footer for all pages
-st.write("---")
-st.write("© 2025 Subway Sweepers. All rights reserved.")
 
 
 
