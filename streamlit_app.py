@@ -19,11 +19,6 @@ Using a Raspberry Pi running a YOLO-based object detection system and an Arduino
 this robot autonomously cleans city streets, subway platforms, and public spaces with minimal environmental impact.
 """)
 
-# Display an image (replace the URL with your actual project image)
-st.image("https://imgur.com/a/1P85Z9Z", 
-         caption="Subway Sweepers in Action", 
-         use_container_width=True)
-
 # Features Section
 st.markdown("## Features")
 st.markdown("""
@@ -42,16 +37,12 @@ Subway Sweepers integrates hardware and software to provide a complete cleaning 
 - Solar panels supply sustainable power, while a mechanical scooping mechanism collects and deposits waste at designated locations.
 """)
 
-# Demo Video Section
-st.markdown("## Watch the Demo")
-st.video("https://vimeo.com/1057266143?share=copy")  # Your Vimeo link
-
 # Sidebar for Navigation and Contact Information
 st.sidebar.title("Navigation")
 st.sidebar.markdown("""
 - [Home](#)
 - [Features](#features)
-- [Demo](#watch-the-demo)
+- [How It Works](#how-it-works)
 - [Contact](#get-in-touch)
 """)
 st.sidebar.markdown("## Contact Us")
@@ -83,6 +74,7 @@ st.markdown(contact_form, unsafe_allow_html=True)
 
 # Footer
 st.write("Thank you for visiting Subway Sweepers! Stay tuned for more updates.")
+
 
 
 
