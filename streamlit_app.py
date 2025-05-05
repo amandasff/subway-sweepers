@@ -7,73 +7,138 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Main Title and Header
-st.title("Subway Sweepers")
-st.header("Smart Urban Cleaners Powered by Solar Energy")
-st.subheader("Redefining Urban Waste Management")
+# Inject custom CSS
+st.markdown("""
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .main-title {
+            color: #2c3e50;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+        .section-header {
+            font-size: 28px;
+            margin-top: 40px;
+            color: #34495e;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .subheader {
+            font-size: 20px;
+            color: #7f8c8d;
+            margin-top: -10px;
+        }
+        .feature-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .testimonial {
+            font-style: italic;
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #2ecc71;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #2ecc71;
+            border: none;
+            color: white;
+            border-radius: 6px;
+        }
+        button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Title Section
+st.markdown("<h1 class='main-title'>Subway Sweepers</h1>", unsafe_allow_html=True)
+st.markdown("<p class='subheader'>Smart Urban Cleaners Powered by Solar Energy</p>", unsafe_allow_html=True)
+st.write("### Redefining Urban Waste Management")
 
 # Product Description
+st.markdown("#### What is Subway Sweepers?")
 st.write("""
-Subway Sweepers is a solar-powered robot designed to efficiently detect, collect, and dispose of urban waste. 
-Using a Raspberry Pi running a YOLO-based object detection system and an Arduino-driven control mechanism, 
-this robot autonomously cleans city streets, subway platforms, and public spaces with minimal environmental impact.
+Subway Sweepers is a **solar-powered autonomous cleaning robot** that revolutionizes public sanitation in urban areas. 
+Using AI-powered object detection and efficient hardware integration, it keeps subways, sidewalks, and public spaces clean with minimal human intervention.
 """)
 
 # Features Section
-st.markdown("## Features")
-st.markdown("""
-- **Solar-Powered Operation:** Runs entirely on renewable energy for sustainable urban cleaning.
-- **Real-Time Object Detection:** Utilizes a Raspberry Pi with YOLO-based computer vision to identify trash.
-- **Autonomous Navigation:** An Arduino processes sensor inputs to navigate and collect waste efficiently.
-- **Versatile Deployment:** Ideal for city roads, subway stations, and various public environments.
-""")
+st.markdown("<h2 class='section-header'>Features</h2>", unsafe_allow_html=True)
+
+cols = st.columns(2)
+with cols[0]:
+    st.markdown("""<div class='feature-box'>✅ **Solar-Powered Operation**  
+    Runs entirely on renewable energy for sustainable urban cleaning.</div>""", unsafe_allow_html=True)
+    st.markdown("""<div class='feature-box'>🧠 **Real-Time Object Detection**  
+    Uses YOLO + Raspberry Pi to identify and classify urban trash.</div>""", unsafe_allow_html=True)
+
+with cols[1]:
+    st.markdown("""<div class='feature-box'>🧭 **Autonomous Navigation**  
+    Arduino interprets sensors to smartly navigate and collect waste.</div>""", unsafe_allow_html=True)
+    st.markdown("""<div class='feature-box'>🌆 **Versatile Deployment**  
+    Works on subway platforms, sidewalks, parks, and urban streets.</div>""", unsafe_allow_html=True)
 
 # How It Works Section
-st.markdown("## How It Works")
+st.markdown("<h2 class='section-header'>How It Works</h2>", unsafe_allow_html=True)
 st.write("""
-Subway Sweepers integrates hardware and software to provide a complete cleaning solution:
-- A Raspberry Pi, paired with a webcam and LCD monitor, processes live video using YOLO for trash detection.
-- An Arduino converts sensor data into precise navigation commands, guiding the robot to collect trash.
-- Solar panels supply sustainable power, while a mechanical scooping mechanism collects and deposits waste at designated locations.
-""")
-
-# Sidebar for Navigation and Contact Information
-st.sidebar.title("Navigation")
-st.sidebar.markdown("""
-- [Home](#)
-- [Features](#features)
-- [How It Works](#how-it-works)
-- [Contact](#get-in-touch)
-""")
-st.sidebar.markdown("## Contact Us")
-st.sidebar.write("""
-For more information or collaboration opportunities, please contact us:
-- **Email:** info@subwaysweepers.com
-- **Phone:** (123) 456-7890
+- **Trash Detection**: A webcam sends video feed to a Raspberry Pi running a YOLO-based model.
+- **Smart Control**: An Arduino receives sensor data and controls motors and steering.
+- **Power Supply**: High-efficiency solar panels power the system, stored in a compact battery unit.
+- **Waste Handling**: A mechanical arm scoops and stores detected trash in an onboard container.
 """)
 
 # Testimonials Section
-st.markdown("## Testimonials")
-st.write("""
-> "Subway Sweepers is a breakthrough in urban waste management. Its autonomous operation and sustainable design offer a practical solution to keeping our cities clean."  
-> *— Urban Planning Expert*
-""")
+st.markdown("<h2 class='section-header'>Testimonials</h2>", unsafe_allow_html=True)
+st.markdown("""
+<div class='testimonial'>
+“Subway Sweepers is a breakthrough in urban waste management. Its autonomous operation and sustainable design offer a practical solution to keeping our cities clean.”  
+<br><br>— <strong>Urban Planning Expert</strong>
+</div>
+""", unsafe_allow_html=True)
 
-# Contact Form
-st.markdown("## Get In Touch")
+# Contact Form Section
+st.markdown("<h2 class='section-header'>Get In Touch</h2>", unsafe_allow_html=True)
+st.write("Interested in collaboration or want to learn more? Reach out below:")
+
 contact_form = """
 <form action="https://formsubmit.co/your-email@example.com" method="POST">
     <input type="hidden" name="_captcha" value="false">
-    <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-    <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-    <textarea name="message" placeholder="Your Message" required style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea>
+    <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #ccc;">
+    <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #ccc;">
+    <textarea name="message" placeholder="Your Message" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
     <button type="submit" style="padding: 10px 20px;">Send Message</button>
 </form>
 """
 st.markdown(contact_form, unsafe_allow_html=True)
 
+# Sidebar
+st.sidebar.title("Navigation")
+st.sidebar.markdown("### Quick Links")
+st.sidebar.markdown("""
+- [Home](#)
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Get In Touch](#get-in-touch)
+""")
+st.sidebar.markdown("### Contact")
+st.sidebar.write("""
+📧 info@subwaysweepers.com  
+📞 (123) 456-7890
+""")
+
 # Footer
-st.write("Thank you for visiting Subway Sweepers! Stay tuned for more updates.")
+st.markdown("---")
+st.write("© 2025 Subway Sweepers. Built with 🛠️ Streamlit.")
 
 
 
